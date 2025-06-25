@@ -11,3 +11,23 @@
 // I need the game object to track whether a victory condition has been met
 // I need to be able to track the number of turns within the game and decide whether a draw happened
 
+const gameboard = function(){
+    const gameboardArr = [];
+
+    function generateGameboard(size){
+        // I do not want the gameboard to be smaller or larger than that
+        if (size < 3 || size > 5){
+            return false;
+        }
+
+        for (let i = 0; i < size; i++){
+            gameboardArr.push([]);
+            for (let j = 0; j < size; j++){
+                gameboardArr[i].push([]);
+            }
+        }
+    }
+
+    return {gameboardArr, generateGameboard}
+}();
+
