@@ -1,0 +1,13 @@
+// I need a Gameboard object with gameboard array
+// this object must be created by using IIFE
+// I need to be able to track the size of the Gameboard (e.g. 3x3)
+// I need to be able to track changes in the Gameboard - every time player moves
+
+// I need to create Players by either using IIFEs or Constructors
+// I need Players to have a name, symbol and number of victories
+
+// I need to be able to create a game objects by IIFEs
+// I need the game to have a mechanism of changing players turns, to control the flow of the game
+// I need the game object to track whether a victory condition has been met
+// I need to be able to track the number of turns within the game and decide whether a draw happened
+
