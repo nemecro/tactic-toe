@@ -32,5 +32,15 @@ const gameboard = function(){
         return gameboardArr.slice();
     }
 
-    return {generateGameboard, getGameboardStatus}
+    // usage: gameboard.setGameboardField('X', 0, 2)
+    function setGameboardField(playerSymbol, row, column){
+        gameboardArr[row][column] = playerSymbol;
+    }
+
+    return {generateGameboard, getGameboardStatus, setGameboardField}
 }();
+
+gameboard.generateGameboard(3);
+gameboard.setGameboardField('X', 0, 0);
+
+console.log(gameboard.getGameboardStatus());
