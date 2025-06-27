@@ -28,6 +28,9 @@ const gameboard = function(){
         }
     }
 
-    return {gameboardArr, generateGameboard}
-}();
+    function getGameboardStatus(){
+        return gameboardArr.slice();
+    }
 
+    return {generateGameboard, getGameboardStatus}
+}();
