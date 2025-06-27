@@ -49,6 +49,57 @@ const gameboard = function(){
 }();
 
 
+const playerHandler = function(){
+    let allowedNumberOfPlayers = 2;
+
+    let players = [];
+
+    /**
+         * Creates a new player if valid and space allows.
+         * @param {string} name - The player's name.
+         * @param {string} symbol - The player's symbol (e.g., 'X' or 'O').
+         * @returns {{success: boolean, message: string}}
+     */
+    function createPlayer(name, symbol){
+        name = name.trim();
+        symbol = symbol.trim();
+
+        if (!name || !symbol){
+            return {success: false, message: 'Name and symbol are required.'};
+        }
+
+        if (symbol.length !== 1){
+            return {success: false, message: 'Symbol must be a single character.'};
+        }
+
+        if (players.length >= allowedNumberOfPlayers){
+            return {success: false, message: 'More players than allowed.'};
+        }
+
+        if (!validatePlayer(name, symbol)){
+            return {success: false, message: 'Player validity check failed'};
+        }
+
+        players.push({name, symbol});
+        return {success: true, message: 'Player added succesfully.'};
+    }
+
+    /**
+         * Validates that the player's name and symbol are unique.
+         * @param {string} name
+         * @param {string} symbol
+         * @returns {boolean}
+     */
+    function validatePlayer(name, symbol){
+        return !players.some(
+            player => player.name === name || player.symbol === symbol
+        );
+    }
+
+    return {createPlayer}
+
+}();
+
 
 
 gameboard.generateGameboard(3);
@@ -56,3 +107,5 @@ console.log(gameboard.setGameboardField('X', 0, 4));
 console.log(gameboard.setGameboardField('X', 0, 2));
 
 console.log(gameboard.getGameboardStatus());
+
+playerHandler.createPlayer('Roland', 'X');
