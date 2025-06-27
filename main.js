@@ -24,6 +24,7 @@ const gameboard = function(){
             gameboardArr.push([]);
             for (let j = 0; j < size; j++){
                 gameboardArr[i].push([]);
+                gameboardArr[i][j] = '';
             }
         }
     }
@@ -34,13 +35,19 @@ const gameboard = function(){
 
     // usage: gameboard.setGameboardField('X', 0, 2)
     function setGameboardField(playerSymbol, row, column){
-        gameboardArr[row][column] = playerSymbol;
+        if (gameboardArr[row][column] === ''){
+            gameboardArr[row][column] = playerSymbol;
+        } else if (gameboardArr[row][column] === undefined){
+            return 'out of bounds';
+        } else {
+            return 'field occupied';
+        }
     }
 
     return {generateGameboard, getGameboardStatus, setGameboardField}
 }();
 
 gameboard.generateGameboard(3);
-gameboard.setGameboardField('X', 0, 0);
+console.log(gameboard.setGameboardField('X', 0, 4));
 
 console.log(gameboard.getGameboardStatus());
