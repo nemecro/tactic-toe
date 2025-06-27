@@ -29,7 +29,7 @@ const gameboard = function(){
     }
 
     function getGameboardStatus(){
-        return gameboardArr.slice();
+        return gameboardArr.map(row => row.slice());
     }
 
     // usage: gameboard.setGameboardField('X', 0, 2)
@@ -96,7 +96,21 @@ const playerHandler = function(){
         );
     }
 
-    return {createPlayer}
+    /**
+     * Resets the players array
+     */
+    function resetPlayers(){
+        players = [];
+    }
+
+    /**
+     * Returns a copy of the players array
+     */
+    function getPlayers(){
+        return players.map(player => ({ ...player }));
+    }
+
+    return {createPlayer, resetPlayers, getPlayers};
 
 }();
 
