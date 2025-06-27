@@ -12,21 +12,20 @@
 // I need to be able to track the number of turns within the game and decide whether a draw happened
 
 const gameboard = function(){
-    const gameboardArr = [];
+    let gameboardArr = [];
 
+    /**
+     * resets the gameboardArr and populates it with empty strings
+     * @param {*} size 
+     * @returns 
+     */
     function generateGameboard(size){
         // I do not want the gameboard to be smaller or larger than that
         if (size < 3 || size > 5){
             return false;
         }
-
-        for (let i = 0; i < size; i++){
-            gameboardArr.push([]);
-            for (let j = 0; j < size; j++){
-                gameboardArr[i].push([]);
-                gameboardArr[i][j] = '';
-            }
-        }
+        gameboardArr = Array.from({length: size}, () => Array(size).fill(''));
+        return true;
     }
 
     function getGameboardStatus(){
@@ -35,10 +34,12 @@ const gameboard = function(){
 
     // usage: gameboard.setGameboardField('X', 0, 2)
     function setGameboardField(playerSymbol, row, column){
+        if (row < 0 || row >= gameboardArr.length || column < 0 || column >= gameboardArr.length){
+            return 'out of bounds';
+        }
         if (gameboardArr[row][column] === ''){
             gameboardArr[row][column] = playerSymbol;
-        } else if (gameboardArr[row][column] === undefined){
-            return 'out of bounds';
+            return true;
         } else {
             return 'field occupied';
         }
@@ -47,7 +48,11 @@ const gameboard = function(){
     return {generateGameboard, getGameboardStatus, setGameboardField}
 }();
 
+
+
+
 gameboard.generateGameboard(3);
 console.log(gameboard.setGameboardField('X', 0, 4));
+console.log(gameboard.setGameboardField('X', 0, 2));
 
 console.log(gameboard.getGameboardStatus());
