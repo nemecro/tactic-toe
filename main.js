@@ -19,11 +19,9 @@ const gameboard = function(){
      * @param {*} size 
      * @returns 
      */
-    function generateGameboard(size){
-        // I do not want the gameboard to be smaller or larger than that
-        if (size < 3 || size > 5){
-            return false;
-        }
+    function generateGameboard(){
+        // I do not want the gameboard to be smaller or larger than that, 3x3 for easier victory conditions
+        const size = 3;
         gameboardArr = Array.from({length: size}, () => Array(size).fill(''));
         return true;
     }
@@ -114,12 +112,17 @@ const playerHandler = function(){
 
 }();
 
+// until a victory condition is not met, swap players turns and get their input
+const createGame = function(){
+
+}
 
 
-gameboard.generateGameboard(3);
-console.log(gameboard.setGameboardField('X', 0, 4));
-console.log(gameboard.setGameboardField('X', 0, 2));
+// gameboard.generateGameboard();
 
-console.log(gameboard.getGameboardStatus());
+// console.log(gameboard.setGameboardField('X', 0, 4));
+// console.log(gameboard.setGameboardField('X', 0, 2));
 
-playerHandler.createPlayer('Roland', 'X');
+// console.log(gameboard.getGameboardStatus());
+
+// playerHandler.createPlayer('Roland', 'X');
